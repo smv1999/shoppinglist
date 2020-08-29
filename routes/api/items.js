@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 // Item model
-const Item = require('../../models/Item');
+const Item = require('../../models/Item'); 
 
 // @route   GET api/items
 // @desc    Get All Items
@@ -11,7 +11,7 @@ const Item = require('../../models/Item');
 router.get('/', (req, res) => {
 
     Item.find()
-        .sort({ date: -1 })
+        .sort({ date: -1 }) // sorting in descending order
         .then(items => res.json(items))
 });
 
@@ -20,7 +20,7 @@ router.get('/', (req, res) => {
 // @access  Public
 router.post('/', (req, res) => {
     const newItem = new Item({
-        name: req.body.name
+        name: req.body.name // no need to pass date as the current date and time is taken by default
     });
     newItem.save().then(item => res.json(item));
 });
